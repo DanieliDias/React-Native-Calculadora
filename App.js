@@ -41,7 +41,7 @@ export default function App() {
     }
     switch(buttonPressed){
       case 'DEL':
-        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 2)))
+        setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 1)))
         return
       case 'LIMPAR': // Limpa todo o conteúdo
         setLastNumber("") 
@@ -63,7 +63,7 @@ export default function App() {
     <View style={styles.container}>
 
       {/* Area onde o resultado é exibido */}
-      <View> style={styles.results}>
+      <View> style={styles.results}
         <Text style={styles.historyText}>{lastNumber}</Text>
         <Text style={styles.resultText}>{currentNumber}</Text>
         </View>
