@@ -26,12 +26,17 @@ export default function App() {
       case 'x':
         setCurrentNumber((firstNumber * secondNumber).toString());
         return;
-      case '/':
-        setCurrentNumber((firstNumber / secondNumber).toString());
-        return;
-      default:
-        return;
-    }
+        case '+/-':
+          if (currentNumber.includes(" ")) {
+            const splitNumbers = currentNumber.split(' ');
+            const lastEntry = splitNumbers.pop();
+            const invertedNumber = (parseFloat(lastEntry) * -1).toString();
+            setCurrentNumber(splitNumbers.join(' ') + ' ' + invertedNumber);
+          } else {
+            setCurrentNumber((parseFloat(currentNumber) * -1).toString());
+          }
+          return;
+      }
   }
 
   function handleInput(buttonPressed) {
