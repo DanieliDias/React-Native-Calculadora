@@ -17,27 +17,29 @@ export default function App() {
     const operator = splitNumbers[1]
 
     // Faz ação referente tecla pressionada
-    switch(operator){
+    switch(operator) {
       case '+':
-        setCurrentNumber((fistNumber + lastNumber).toString())
-        return
-      case '-': 
-        setCurrentNumber((fistNumber - lastNumber).toString())
-        return
+        setCurrentNumber((firstNumber + secondNumber).toString());
+        return;
+      case '-':
+        setCurrentNumber((firstNumber - secondNumber).toString());
+        return;
       case 'x':
-        setCurrentNumber((fistNumber + lastNumber).toString())
-        return
-      case '/': 
-        setCurrentNumber((fistNumber - lastNumber).toString())
-        return
+        setCurrentNumber((firstNumber * secondNumber).toString());
+        return;
+      case '/':
+        setCurrentNumber((firstNumber / secondNumber).toString());
+        return;
+      default:
+        return;
     }
   }
 
   function handleInput(buttonPressed){
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
-    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" ){
-      setCurrentNumber(currentNumber + " " + buttonPressed + " ")
-      return
+    if (buttonPressed === '+' || buttonPressed === "-" || buttonPressed === "x" || buttonPressed === "/") {
+      setCurrentNumber(currentNumber + " " + buttonPressed + " ");
+      return;
     }
     switch(buttonPressed){
       case 'DEL':
