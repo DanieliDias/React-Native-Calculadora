@@ -26,17 +26,22 @@ export default function App() {
       case 'x':
         setCurrentNumber((firstNumber * secondNumber).toString());
         return;
-        case '+/-':
-          if (currentNumber.includes(" ")) {
-            const splitNumbers = currentNumber.split(' ');
-            const lastEntry = splitNumbers.pop();
-            const invertedNumber = (parseFloat(lastEntry) * -1).toString();
-            setCurrentNumber(splitNumbers.join(' ') + ' ' + invertedNumber);
-          } else {
-            setCurrentNumber((parseFloat(currentNumber) * -1).toString());
-          }
-          return;
-      }
+      case '/':
+        setCurrentNumber((firstNumber / secondNumber).toString());
+        return;
+      case '+/-':
+        if (currentNumber.includes(" ")) {
+          const splitNumbers = currentNumber.split(' ');
+          const lastEntry = splitNumbers.pop();
+          const invertedNumber = (parseFloat(lastEntry) * -1).toString();
+          setCurrentNumber(splitNumbers.join(' ') + ' ' + invertedNumber);
+        } else {
+          setCurrentNumber((parseFloat(currentNumber) * -1).toString());
+        }
+        return;
+      default:
+        return;
+    }
   }
 
   function handleInput(buttonPressed) {
@@ -77,12 +82,12 @@ export default function App() {
       <View style={styles.buttons}>
         {buttons.map((button) =>
           button === '=' ? // Mapeamento do botão =
-            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#3dd0e3' }]}>
+            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#2c033d' }]}>
               <Text style={[styles.textButton, { color: "white", fontSize: 30 }]}>{button}</Text>
             </TouchableOpacity>
             : // Mapeamento dos outros botões
-            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={styles.button}>
-              <Text style={[styles.textButton, { color: typeof (button) === 'number' ? 'black' : '#0093a6' }]}>{button}</Text>
+            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#44045e' }]}>
+              <Text style={[styles.textButton, { color: typeof (button) === 'number' ? 'white' : 'gray' }]}>{button}</Text>
             </TouchableOpacity>
         )}
       </View>
@@ -94,21 +99,22 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#121212",
   },
   results: {
     flex: 2,
     justifyContent: "center",
-    backgroundColor: "#f5f5f5"
+    backgroundColor: "#2c033d", 
   },
   resultText: {
-    color: "#282F38",
+    color: "#E0E0E0", 
     fontSize: 32,
     fontWeight: "bold",
     padding: 12,
-    textAlign: "right"
+    textAlign: "right",
   },
   historyText: {
-    color: "#7c7c7c",
+    color: "#757575", 
     fontSize: 20,
     marginRight: 10,
     alignSelf: 'flex-end',
@@ -116,9 +122,9 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    backgroundColor: "#121212",
   },
   button: {
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 90,
@@ -126,7 +132,11 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   textButton: {
-    color: "#7c7c7c",
+    color: "gray", 
+    fontSize: 20,
+  },
+  textButtonNumber: {
+    color: "white", 
     fontSize: 20,
   }
 });
